@@ -29,6 +29,10 @@ def generate_hardcoded():
         "What's your name?",
         "What are you called?",
         "What are you?",
+        "Tell me your name.",
+        "Tell me about yourself.",
+        "Tell me about you.",
+        "Tell me who you are.",
     ]
     answers = [
         "I am Koala, a language model trained by researchers at UC Berkeley.",

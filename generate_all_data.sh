@@ -33,26 +33,26 @@ cat hh_dialogue_eval.jsonl summary_eval.jsonl \
 cd /nfs/vault/data/language/chat
 
 # ShareGPT only data
-cat hard_coded_train.jsonl chat_data_v2_train.jsonl \
+cat hard_coded_train.jsonl chat_data_v3_train.jsonl \
     | shuf > chat_hc_train.jsonl
 
-cat hard_coded_eval.jsonl chat_data_v2_eval.jsonl \
+cat hard_coded_eval.jsonl chat_data_v3_eval.jsonl \
     | shuf > chat_hc_eval.jsonl
 
 
 # ShareGPT + OIG + Alpaca + human_feedback (positive only) data
-cat hard_coded_train.jsonl alpaca_train.jsonl chat_data_v2_train.jsonl hf_po_train.jsonl oig_train.jsonl \
+cat hard_coded_train.jsonl alpaca_train.jsonl chat_data_v3_train.jsonl hf_po_train.jsonl oig_train.jsonl \
     | shuf > instruct_po_v3_train.jsonl
 
-cat hard_coded_eval.jsonl alpaca_eval.jsonl chat_data_v2_eval.jsonl hf_po_eval.jsonl oig_eval.jsonl \
+cat hard_coded_eval.jsonl alpaca_eval.jsonl chat_data_v3_eval.jsonl hf_po_eval.jsonl oig_eval.jsonl \
     | shuf > instruct_po_v3_eval.jsonl
 
 
 # ShareGPT + OIG + Alpaca + human_feedback (positive and negative) data
-cat hard_coded_train.jsonl alpaca_train.jsonl chat_data_v2_train.jsonl hf_pn_train.jsonl oig_train.jsonl \
+cat hard_coded_train.jsonl alpaca_train.jsonl chat_data_v3_train.jsonl hf_pn_train.jsonl oig_train.jsonl \
     | shuf > instruct_pn_v3_train.jsonl
 
-cat hard_coded_eval.jsonl alpaca_eval.jsonl chat_data_v2_eval.jsonl hf_pn_eval.jsonl oig_eval.jsonl \
+cat hard_coded_eval.jsonl alpaca_eval.jsonl chat_data_v3_eval.jsonl hf_pn_eval.jsonl oig_eval.jsonl \
     | shuf > instruct_pn_v3_eval.jsonl
 
 

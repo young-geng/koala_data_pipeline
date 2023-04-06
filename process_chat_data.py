@@ -11,9 +11,9 @@ import mlxu
 
 
 FLAGS, FLAGS_DEF = mlxu.define_flags_with_default(
-    input_file='/nfs/vault/data/language/chat_data_v2.json',
-    train_output_file='/nfs/vault/data/language/chat/chat_data_v2_train.jsonl',
-    eval_output_file='/nfs/vault/data/language/chat/chat_data_v2_eval.jsonl',
+    input_file='/nfs/vault/data/language/chat_data_v3.json',
+    train_output_file='/nfs/vault/data/language/chat/chat_data_v3_train.jsonl',
+    eval_output_file='/nfs/vault/data/language/chat/chat_data_v3_eval.jsonl',
     eval_json_output_file='/nfs/vault/data/language/chat/chat_eval_json.json',
     gpt_marker='GPT:',
     user_marker='USER:',
@@ -42,7 +42,11 @@ def process_data(data, output_file):
                 'marker_gpt': FLAGS.gpt_marker,
                 'marker_user': FLAGS.user_marker,
             }
-            keys = sorted(example.keys(), key=lambda x: int(x.split('_')[-1]))
+            filtered_keys = [
+                key for key in example.keys()
+                if key.startswith('human') or key.startswith('gpt')
+            ]
+            keys = sorted(filtered_keys, key=lambda x: int(x.split('_')[-1]))
             fields = []
             skip = False
             for key in keys:
@@ -72,7 +76,11 @@ def process_eval_data(data, output_file):
     text = []
     total = 0
     for example in tqdm(data):
-        keys = sorted(example.keys(), key=lambda x: int(x.split('_')[-1]))
+        filtered_keys = [
+            key for key in example.keys()
+            if key.startswith('human') or key.startswith('gpt')
+        ]
+        keys = sorted(filtered_keys, key=lambda x: int(x.split('_')[-1]))
         current_prefix = FLAGS.beginning_marker
         for key in keys:
             if key.startswith('gpt'):
